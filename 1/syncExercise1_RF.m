@@ -82,8 +82,9 @@ rx_Q_filtered = rx_Q_filtered(1:length(rx_Q));
 %baseband representation
 rx_demod_filtered = rx_I_filtered - rx_Q_filtered*i;
 
-%3. frequency offset compensation : should be modified!!
-rx_demod_comp = rx_demod_filtered;
+%3. frequency offset compensation : after modify
+rx_demod_comp  =rx_demod_filtered.*exp(i*2*pi*fc*(freqOffset/100)*t_sim);
+
 
 
 %4. symbol detection (symbol to bit)
