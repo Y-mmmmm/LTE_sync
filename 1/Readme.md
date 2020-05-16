@@ -15,6 +15,7 @@
 
 
 
+
 ## 실습 (MATLAB)
 
 **1. 코드 분석**
@@ -29,9 +30,13 @@ RF_Q = imag(sym_oversample).*sin(2*pi*fc*t_sim);
 RF_signal = RF_I - RF_Q; 
 ```
 => cos 신호와 sin 신호는 직교하는 형태임. Product modulator에서 송신단(TX)에서는 신호에 직교하는 Carrier를 곱함.
+
 => I-Channel에는 실수부분을 나타냄(cos을 곱해줌)
+
 => Q-Channel에는 허수부분을 나타냄(sin을 곱해줌)
+
 => RF_signal = RF_I - RF_Q 로 정의됨
+
 
 **: RX process의 1.RF signal demodulation 코드 분석**
 ```
@@ -44,8 +49,11 @@ rx_I = Rx_signal .* cos(2*pi*fc*(1+freqOffset/100)*t_sim);
 rx_Q = Rx_signal .* sin(2*pi*fc*(1+freqOffset/100)*t_sim);
 ```
 => RF(수신측)에서는 약간의 Frequency Offset을 가지고 신호를 받음
+
 => 이러한 이유로 bit_error가 발생함
+
 => 이 부분을 나중에 수정해줘야 함
+
 
 
 **2.  통신 신호의 주파수 특성 관찰**
