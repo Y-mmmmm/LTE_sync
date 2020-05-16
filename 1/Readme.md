@@ -53,6 +53,7 @@ Snr = 10;  %signal to noise ratio, dB
 
 freqOffset = 0.03;  %frequency offset (unit : %)
 ```
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/1/figs/original_figure.jpg)
 
 
 **3. 수신신호 환경에 따른 bit error 관찰**
