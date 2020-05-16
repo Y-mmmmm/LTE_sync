@@ -43,7 +43,8 @@ rx_Q = Rx_signal .* sin(2*pi*fc*(1+freqOffset/100)*t_sim);
 
 
 **2.  통신 신호의 주파수 특성 관찰**
-[원래신호 Figure]	=>bit_error=0.5파라미터 setting 상태
+[원래신호 Figure]	=>bit_error=0.5
+파라미터 setting 상태
 ```
 %Parameter setting ------------------------------------
 
