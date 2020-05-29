@@ -150,7 +150,11 @@ end
 
 % -- 3.2 OFDM demodulation
 if FFTsize > 0
-    %rxf_sym = [];
+     rxf_sym = [];
+    for k = 1: Nsym/FFTsize
+	ofdmSymOffset = (k-1)*(FFTsize +ncp) + fftOffset ;
+	rxf_sym = [rxf_sym  fft(rx_sym(ofdmSymOffset +1 : ofdmSymOffset + FFTsize)) ];
+    end
 else
     rxf_sym = rx_sym;
 end
