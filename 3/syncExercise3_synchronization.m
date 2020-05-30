@@ -123,22 +123,25 @@ rx_demod = rx_demod .* exp(i*RFfreq*freqOffset/100*n);
 max_timing = -1;
 max_metric = -100000;
 max_Nid = 0;
+
 for testNid = 0 : 2
-    %prob.1 :: Generate OFDM modulated wave of the i'th PSS sequence 
-    % - generate PSS sequence
-    % gen_PSS
-    % - OFDM modulation
-    
-    
-    
-    
-    %prob.2 :: cross correlation between the generated wave and the rx_demod
+    % used function(PSS, SSS)
+
+       PSSpattern = gen_PSS(testNid);
+       timePssPattern = zeros(1, FFTsize);
+       timePssPattern(subOffset_SS + NsymZeroPadding : subOffset_SS + NsymZeroPadding+NsymPSS -1) = PSSpattern;  
+       timePssPattern = ifft(timePssPattern);
+       
+%prob.2 :: cross correlation between the generated wave and the rx_demod
+%find the maximal point of the correlation value
     for testTiming = 1 : Nsym-FFTsize
-        %find the maximal point of the correlation value
-        
-        
-        
-    end
+       metric = abs(dot(timePssPattern, rx_demod(testTiming: testTiming+FFTsize-1)));
+       if max_metric < metric
+           max_metric = metric ;
+           max_timing = testTiming;
+           max_Nid = testNid;
+       end
+    end 
 end
 
 estimated_timing_offset = max_timing; %result 1 : estimated timing of the PSS start
@@ -154,21 +157,26 @@ max_Nid = 0;
 % - OFDM demodulation
 % - subcarrier selection
 
-     SSSsymOffset = PSSsymOffset - FFTsize ;
-     RXsss = RXdata[SSSsymOffset : +FFTsize-1] ;
-     RXsss = FFT(RXsss) ;
-     FsssOffset = FFTsize/2 - Nsss/2 -1: +61 ;
+SSSsym = rx_demod(estimated_timing_offset-FFTsize : estimated_timing_offset -1);
+SSSsymf = fft(SSSsym, FFTsize);
+SSSrx = SSSsymf(subOffset_SS + NsymZeroPadding : subOffset_SS + NsymZeroPadding+NsymSSS-1);
 
 
 %prob.4 :: correlation of the SSS
 for testNid = 0 : 167
     % - generate the original SSS sequence
-    SSSseq = gen_SSS()
+    SSSpattern = gen_SSS(testNid, estimatedNID2);
     
     for seq = 1 : 2 %for two distinct sequence (slot 0 or slot 10)
         % - correlation and find the maximal sequence index
+        if metric> max_metric
+            max_metric = metric;
+            max_Nid = testNid;
+            max_seq = seq;
+        end
     end
 end
+
 
 estimatedNID = max_Nid*3 + estimatedNID2 %result 3 : eventual NID value
 
