@@ -12,8 +12,8 @@ freqOffset = 0;                                     %frequency offset (unit : %)
 
 %LTE frame structure parameters
 Nslot = 20;                                         %Num. of slots
-NOFDMsym = 7;                                       %Num. of OFDM symbols in a slot
-FFTsize = 1024;                                     %FFT size (10MHz)
+NOFDMsym = 7;                                  %Num. of OFDM symbols in a slot
+FFTsize = 1024;                                   %FFT size (10MHz)
 
 %LTE PSS / SSS parameters
 NsymPSS = 62;                                                       %Num. of PSS seq.
@@ -125,7 +125,7 @@ max_metric = -100000;
 max_Nid = 0;
 
 for testNid = 0 : 2
-    % used function(PSS, SSS)
+    % used function(PSS)
 
        PSSpattern = gen_PSS(testNid);
        timePssPattern = zeros(1, FFTsize);
