@@ -140,6 +140,7 @@ estimatedNID = NID1*3 + NID2
 ```
 
 
+
 **3. Frameboundary 찾는 코드**
 ```
 if max_seq == 1
@@ -160,6 +161,8 @@ end
 ```
 => estimated_timing_offset이 timing의 시작점을 찾아준 것이므로, frameboundary는 10ms가 지난 지점이 된다. 따라서 위와 같은 코드를 작성해주었다.
 
+
+
 **4. Matlab 코드를 통해 얻은 결과 및 그래프**
 
 => 6번을 제외한 나머지 예시들은 정확한 PCI와 Frameboundary를 찾을 수 있었음.
@@ -169,7 +172,7 @@ end
 ![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/LTESyncProject/9.png)
 
 
-+ 2번 그래프를 자세히 살펴보면 PSS부분에서 추가한 코드를 통해서 더 정교하게 찾을 수 있었음.
+=> 2번 그래프를 자세히 살펴보면 PSS부분에서 추가한 코드를 통해서 더 정교하게 찾을 수 있었음.
 
 ![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/LTESyncProject/10.png)
 
