@@ -73,8 +73,32 @@ freqOffset = 0.03;  %frequency offset (unit : %)
 
 **3. 수신신호 환경에 따른 bit error 관찰**
 
-**4. Frequency Offset 보정**
+![]()
 
+
+**4. Frequency Offset 보정**
+=> freqOffset = 0.03으로 바꿨을 때, bit error 관찰
+=> RX process 3번에 보정코드를 넣어서 bit error 안나오도록 수정하기
+
+(현재 parameter setting)					=> bit error=0.4990
+%Parameter setting ------------------------------------
+Nbit = 1000;                    %number of bits to send
+Snr = 10;                       %signal to noise ratio, dB
+freqOffset = 0.03;              %frequency offset (unit : %)
+fc = 10^4;                      %carrier frequency
+fs = 100;                       %baseband rate
+
+(현재 그래프)
+
+
+여기에 RX process 3번에 보정코드 추가한 것
+```
+(추가된 코드)
+rx_demod_comp  =rx_demod_filtered.*exp(i*2*pi*fc*(freqOffset/100)*t_sim);
+```
+
+(코드 수정 후 그래프) => bit error=0
+![]()
 
 > Written with [StackEdit](https://stackedit.io/).
 
