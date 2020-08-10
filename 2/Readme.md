@@ -67,7 +67,7 @@ end
 
 => Qm = 2, 4, 6을 조절하였을 때, bit error가 거의 나지 않아야 함(여기에서는 2,4인 경우만 그래프를 첨부함)
 
-![]()
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/2/FIGURE0.png)
 
 
 **2. SNR 별 modulation 성능 분석**
@@ -80,11 +80,11 @@ end
 
 1) Qm=2일 때, SNR= 10, 5, 0. -5 성능을 그래프로 확인해보면
 
-![]()
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/2/FIGURE1.png)
 
 2) Qm=4일 때, SNR= 10, 5, 0. -5 성능을 그래프로 확인해보면
 
-![]()
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/2/FIGURE2.png)
 
 1)2) 상황을 보면 SNR의 크기를 낮춰줄수록 그래프가 더 퍼지게 나타났으며, bit error가 커지는 것을 볼 수 있었다.
 
@@ -148,7 +148,7 @@ end
 ```
 코드를 고친 후 실행 결과 및 그래프 => bit error=0
 
-![]()
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/2/FIGURE3.png)
 
 2) FFTsize=0로 두었을 때, bit error = 0
 ```
@@ -160,7 +160,7 @@ fftOffset = 2;                  %sample offset for FFT process
 ```
 실행 결과 및 그래프 => bit error=0
 
-![]()
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/2/FIGURE4.png)
 
 
 > Written with [StackEdit](https://stackedit.io/).
