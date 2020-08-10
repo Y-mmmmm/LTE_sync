@@ -73,6 +73,9 @@ freqOffset = 0.03;  %frequency offset (unit : %)
 
 **3. 수신신호 환경에 따른 bit error 관찰**
 
+여기서 SNR(Signal to Noise Ratio), 즉 bit당 에너지와 노이즈 power의 비율을 의미한다. 아래의 그래프를 보게되면 SNR이 -10으로 될수록 노이즈가 더 많이끼는 현상을 볼 수 있다.
+
+
 ![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/1/figure0.png)
 
 
