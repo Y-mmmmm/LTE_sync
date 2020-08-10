@@ -1,4 +1,4 @@
-# LTESyncProject
+# LTESyncProject_1
 ## 실습 내용
 ### ***통신 신호 및 시스템 & LTE개념***
 
@@ -43,9 +43,10 @@ for testNid = 0 : 2
     end 
 end
 ```
-+ 여기에서 PssPattern을 저렇게 나눠서 지정해준 이유를 살펴보면 아래 그림과 같이 DC=0을 기준으로 위 아래로 PSS가 존재한다. 이때, -부분에 있는 신호를 +쪽에 띄어서 붙여줘야하기 때문에 다음과 같이 앞부분과 뒷부분쪽에 PSS를 위치시킨 것을 알 수 있다.
++ 여기에서 PssPattern을 저렇게 나눠서 지정해준 이유를 살펴보면 아래 그림과 같이 DC=0을 기준으로 위 아래로 PSS가 존재한다. 
+이때, -부분에 있는 신호를 +쪽에 띄어서 붙여줘야하기 때문에 다음과 같이 앞부분과 뒷부분쪽에 PSS를 위치시킨 것을 알 수 있다.
 
-![]()1
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/LTESyncProject/1.png)
 
 
 
@@ -105,9 +106,9 @@ if (PSS2> PSS0)&& (PSS2 > PSS1)
 end
 ```
 
-![]()4
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/LTESyncProject/4.png)
 
-![]()5
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/LTESyncProject/5.png)
 
 => 위의 코드를 살펴보면 각 Nid2마다 correlation값이 최고인 지점을 찾아서 그 값들 중에 가장 큰 값을 골라내는 코드이다.
 
@@ -157,19 +158,20 @@ else
    end
 end
 ```
+=> estimated_timing_offset이 timing의 시작점을 찾아준 것이므로, frameboundary는 10ms가 지난 지점이 된다. 따라서 위와 같은 코드를 작성해주었다.
 
 **4. Matlab 코드를 통해 얻은 결과 및 그래프**
 
 => 6번을 제외한 나머지 예시들은 정확한 PCI와 Frameboundary를 찾을 수 있었음.
 
-![]()
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/LTESyncProject/8.png)
 
-![]()
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/LTESyncProject/9.png)
 
 
 + 2번 그래프를 자세히 살펴보면 PSS부분에서 추가한 코드를 통해서 더 정교하게 찾을 수 있었음.
 
-![]()
+![](https://github.com/prizesilvers2/Communication_Theorem/blob/master/Figs/LTESyncProject/10.png)
 
 > Written with [StackEdit](https://stackedit.io/).
 
