@@ -168,6 +168,7 @@ for testNid = 0 : 167
     SSSpattern = gen_SSS(testNid, estimatedNID2);
     
     for seq = 1 : 2 %for two distinct sequence (slot 0 or slot 10)
+	metric = dot(SSSrx, SSSpattern(seq,:));
         % - correlation and find the maximal sequence index
         if metric> max_metric
             max_metric = metric;
