@@ -1,3 +1,4 @@
+clc;
 clear;
 
 %LTE frame structure parameters
@@ -16,7 +17,8 @@ NsymZeroPadding = 5;                                                %Num. of 0-p
 
 x = load('rxdump006.dat');
 xReal = convertToReal(x);
-
+Nsym = length(xReal);
+rx_data = xReal;
 
 %1-1. PSS detection
 %finding maximal NID2 and timing
@@ -218,6 +220,7 @@ for testNid = 0 : 167
     
     for seq = 1 : 2 %for two distinct sequence (slot 0 or slot 10)
         % - correlation and find the maximal sequence index
+        metric = abs( dot(SSSrx, seq_SSS(seq,:))); 
         if metric> max_metric
             max_metric = metric;
             max_Nid = testNid;

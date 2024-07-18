@@ -55,76 +55,76 @@ for testNid = 0
     PSS0 = i;
             
     if max_PSS0(1, j) > max_PSS0(1, k)
-        max_timing0 = j;
+                max_timing0 = j;
     else
-        max_timing0 = k;
+                max_timing0 = k;
     end
 end
 
 
 for testNid = 1
-    seq_PSS = gen_PSS(testNid); % - generate PSS sequence
-    %mapping to RE
-    sym_receive = zeros(1,FFTsize); 
-    sym_receive(FFTsize - NsymPSS/2  +1 : FFTsize) = seq_PSS(1:31); 
-    sym_receive(2 : 2 + NsymPSS/2 - 1) = seq_PSS(32:62);
-    symifft = ifft(sym_receive);
+        seq_PSS = gen_PSS(testNid); % - generate PSS sequence
+        %mapping to RE
+        sym_receive = zeros(1,FFTsize); 
+        sym_receive(FFTsize - NsymPSS/2  +1 : FFTsize) = seq_PSS(1:31); 
+        sym_receive(2 : 2 + NsymPSS/2 - 1) = seq_PSS(32:62);
+        symifft = ifft(sym_receive);
         
-    % cross correlation between the generated wave and the rx_demod
+        % cross correlation between the generated wave and the rx_demod
         
-    for testTiming = 1 : Nsym - FFTsize
-        max_PSS1(testNid+1,testTiming) = abs( dot(symifft, rx_data(testTiming : testTiming + FFTsize -1)));
-    end 
+        for testTiming = 1 : Nsym - FFTsize
+            max_PSS1(testNid+1,testTiming) = abs( dot(symifft, rx_data(testTiming : testTiming + FFTsize -1)));
+        end 
         
-    A_1 = [];
-    B_1 = [];
-    C_1 = [];
-    A_1 = max_PSS1(2, 1:76288) ;
-    B_1 = max_PSS1(2, 76288+1: 152576);
-    C_1 = A_1 + B_1 ;
-    [l, m] = max(C_1);
-    n = m+76800 ;
+            A_1 = [];
+            B_1 = [];
+            C_1 = [];
+            A_1 = max_PSS1(2, 1:76288) ;
+            B_1 = max_PSS1(2, 76288+1: 152576);
+            C_1= A_1 + B_1 ;
+            [l, m] = max(C_1);
+            n = m+76800 ;
             
-    PSS1 = l;
+            PSS1 = l;
             
-    if max_PSS1(2, m) > max_PSS1(2, n)
-        max_timing1 = m;
-    else
-        max_timing1 = n;
-    end
+            if max_PSS1(2, m) > max_PSS1(2, n)
+                max_timing1 = m;
+            else
+                max_timing1 = n;
+            end
 end
 
 
 for testNid = 2
-    seq_PSS = gen_PSS(testNid); % - generate PSS sequence
-    %mapping to RE
-    sym_receive = zeros(1,FFTsize); 
-    sym_receive(FFTsize - NsymPSS/2  +1 : FFTsize) = seq_PSS(1:31); 
-    sym_receive(2 : 2 + NsymPSS/2 - 1) = seq_PSS(32:62);
-    symifft = ifft(sym_receive);
+        seq_PSS = gen_PSS(testNid); % - generate PSS sequence
+        %mapping to RE
+        sym_receive = zeros(1,FFTsize); 
+        sym_receive(FFTsize - NsymPSS/2  +1 : FFTsize) = seq_PSS(1:31); 
+        sym_receive(2 : 2 + NsymPSS/2 - 1) = seq_PSS(32:62);
+        symifft = ifft(sym_receive);
         
-    % cross correlation between the generated wave and the rx_demod
+        % cross correlation between the generated wave and the rx_demod
         
-    for testTiming = 1 : Nsym - FFTsize
-        max_PSS2(testNid+1,testTiming) = abs( dot(symifft, rx_data(testTiming : testTiming + FFTsize -1)));
-    end 
+        for testTiming = 1 : Nsym - FFTsize
+            max_PSS2(testNid+1,testTiming) = abs( dot(symifft, rx_data(testTiming : testTiming + FFTsize -1)));
+        end 
         
-    A_2 = [];
-    B_2 = [];
-    C_2 = [];
-    A_2 = max_PSS2(3, 1:76288) ;
-    B_2 = max_PSS2(3, 76288+1: 152576);
-    C_2 = A_2 + B_2 ;
-    [p,q] = max(C_2);
-    r = q+76800 ;
+            A_2 = [];
+            B_2 = [];
+            C_2 = [];
+            A_2 = max_PSS2(3, 1:76288) ;
+            B_2 = max_PSS2(3, 76288+1: 152576);
+            C_2= A_2 + B_2 ;
+            [p,q] = max(C_2);
+            r = q+76800 ;
         
-    PSS2 = p;
+            PSS2 = p;
             
-    if max_PSS2(3, q) > max_PSS2(3, r)
-        max_timing2 = q;
-    else
-        max_timing2 = r;
-    end      
+            if max_PSS2(3, q) > max_PSS2(3, r)
+                max_timing2 = q;
+            else
+                max_timing2 = r;
+            end      
 end
 
 
@@ -138,18 +138,17 @@ if (PSS1> PSS0) && (PSS1 > PSS2)
     estimated_timing_offset = max_timing1 ;
 end
 
-if (PSS2> PSS0) && (PSS2 > PSS1)
+if (PSS2> PSS0)&& (PSS2 > PSS1)
     estimatedNID2 = 2;
     estimated_timing_offset = max_timing2 ;
 end
 
 figure(1);
-plot(abs(max_PSS0(1,:)),'b');
+plot(abs(max_PSS0(1,:)) );
 hold on;
 plot(abs(max_PSS1(2,:)),'r');
 plot(abs(max_PSS2(3,:)),'g');
 hold off;
-legend('PSS0','PSS1','PSS2');
 
 %1-2. boundary calculation
 %filling up :: slotBoundary ////////
